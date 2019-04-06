@@ -8,7 +8,8 @@ A simple C++ project that implements the architecture of a URL shortening servic
 
 ## Installation
 Link the libraries and header files provided in the MySQL folder.<br />
-Place the dll file in bin/debug directory
+Place the dll file in bin/debug directory<br />
+Create a new database in localhost/phpmyadmin through Xampp
 
 ## Team
 github.com/anirudh-g99<br />
