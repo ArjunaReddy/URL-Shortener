@@ -1,8 +1,6 @@
 /*REQUIREMENTS BEFORE EXECUTION :
-MySQL server has to be established
-create a new database and table 'urlhash' with fields ID BIGINT,URL VARCHAR(30) and TinyURL VARCHAR(7)
-URL field should be set as primary key in database to avoid duplicate insertion
-We have limited the size of TinyURL field to 7 to ensure that size of shortened link remains fairly small*/
+Create a new apache server and a MySQL database through Xampp
+*/
 #include<iostream>
 #include<string>
 #include<time.h>
