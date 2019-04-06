@@ -11,5 +11,5 @@ Link the libraries and header files provided in the MySQL folder.<br />
 Place the dll file in bin/debug directory
 
 ## Team
-github.com/anirudh-g99
-github.com/ArjunaReddy
+github.com/anirudh-g99<br />
+github.com/ArjunaReddy<br />
