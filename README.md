@@ -8,7 +8,7 @@ A simple C++ project that implements the architecture of a URL shortening servic
 
 ## Installation
 1. Link the libraries and header files provided in the MySQL folder.<br />
-2. Place the dll file in bin/debug directory<br />
+2. Place the dll file in Project/bin/debug directory<br />
 3. Open Xampp Control Panel and start the Apache and MySQL Modules<br />
 4. Create a new user on MySQL and grant all privileges<br />
 
