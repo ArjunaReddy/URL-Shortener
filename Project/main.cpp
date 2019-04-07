@@ -25,7 +25,7 @@ bool check_id_db(MYSQL*,long long);
 long long hashfn(MYSQL*);
 string encode(long long);
 
-int main(int argc,char** argv)
+int main()
 {
     entry e;
     string t_url;
