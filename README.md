@@ -5,6 +5,8 @@ A simple C++ project that implements the architecture of a URL shortening servic
 ## Software Requirements
 1. code::blocks IDE is recommended for linking MySQL/C connector libraries,dll and header files.<br />
 2. Xampp web server solution stack<br />
+3. SQLAPI++ Library<br />
+IMPORTANT : Please ensure that xampp folder and SQLAPI folder is present in C:\ directory to avoid complications
 
 ## Installation
 1. Link the libraries and header files provided in the MySQL folder.<br />
