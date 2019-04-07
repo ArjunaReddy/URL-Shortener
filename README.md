@@ -14,8 +14,8 @@ IMPORTANT : Please ensure that xampp folder and SQLAPI folder is present in C:\ 
 3. Open Xampp Control Panel and start the Apache and MySQL Modules<br />
 4. Create a new user on MySQL and grant all privileges<br />
 
-## Collaborators
+## Team
 Anirudh G<br />
-github.com/anirudh-g99<br />
+[https://github.com/anirudh-g99]<br />
 Arjuna Reddy<br />
-github.com/ArjunaReddy<br />
+[https://github.com/ArjunaReddy]<br />
