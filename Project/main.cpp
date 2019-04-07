@@ -40,7 +40,7 @@ int main()
     MYSQL *conn = mysql_init(NULL);
     if (conn == NULL)
     {
-        fprintf(stderr, "%s\n", mysql_error(conn));
+        cout<<"No connection established"<<endl;
         exit(1);
     }
     conn = mysql_real_connect(conn, ip_address.c_str(), username.c_str(), password.c_str(), NULL, 0, NULL, 0);
