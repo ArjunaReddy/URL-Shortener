@@ -1,5 +1,7 @@
 /*REQUIREMENTS BEFORE EXECUTION :
-Create a new apache server and a MySQL database through Xampp
+Link the connector libraries
+Open Xampp Control Panel and start the Apache and MySQL Modules
+Create a new user on MySQL and grant all privileges
 */
 #include<iostream>
 #include<string>
@@ -12,9 +14,9 @@ Create a new apache server and a MySQL database through Xampp
 using namespace std;
 struct entry   //value inserted into database
 {
-    long long id;
-    string url;
-    string turl;
+    long long id;   //Randomly generated
+    string url;     //Actual URL input
+    string turl;    //Shortened Link generated
 };
 unsigned long long Randomize();
 void insertdb(entry,MYSQL*);
@@ -23,16 +25,39 @@ bool check_id_db(MYSQL*,long long);
 long long hashfn(MYSQL*);
 string encode(long long);
 
-int main()
+int main(int argc,char** argv)
 {
     entry e;
     string t_url;
-    MYSQL *conn;
-    conn = mysql_init(0);
-    conn = mysql_real_connect(conn,"192.168.56.1","admin","admin","hash2",0,NULL,0);
+
+    string ip_address,username,password,database;
+    cout<<"Enter IP Address : ";
+    cin>>ip_address;
+    cout<<"Enter Username : ";
+    cin>>username;
+    cout<<"Enter Password : ";
+    cin>>password;
+    MYSQL *conn = mysql_init(NULL);
+    if (conn == NULL)
+    {
+        fprintf(stderr, "%s\n", mysql_error(conn));
+        exit(1);
+    }
+    conn = mysql_real_connect(conn, ip_address.c_str(), username.c_str(), password.c_str(), NULL, 0, NULL, 0);
+    int qstate = mysql_query(conn, "CREATE DATABASE testdb");//creates a new database
+    if(!qstate)
+        cout<<"New Database Created"<<endl;
+    conn = mysql_real_connect(conn,ip_address.c_str(),username.c_str(),password.c_str(),"testdb",0,NULL,0);
     //parameters in the above function: connection pointer, IPv4 address, user name, password, name of database, 0, NULL, 0
     if(conn)
-        cout<<"Connected to server database"<<endl;
+    {
+        cout<<"Connected to database server"<<endl;
+        //Query to create a new hash table
+        string query2 = "CREATE TABLE urlhash(ID BIGINT,URL VARCHAR(30),TinyURL VARCHAR(7),PRIMARY KEY(URL));";
+        const char* q = query2.c_str();
+        if(!mysql_query(conn,q))
+            cout<<"New Hash Table Created"<<endl;
+    }
     else
     {
         cout<<"ERROR: No connection established\n";
@@ -46,19 +71,25 @@ int main()
         cin>>ch;
         switch(ch)
         {
-            case 1 :cout<<"Enter URL : ";
-                    cin>>e.url;
-                    e.id = hashfn(conn);
-                    e.turl = encode(e.id);
-                    insertdb(e,conn);
-                    cout<<endl;
-                    break;
-            case 2 :cout<<"Enter Tiny URL : https://erb.ly/";
-                    cin>>t_url;
-                    extractdb(conn,t_url);
-                    cout<<endl;
-                    break;
-            default: return 0;
+            case 1:
+                cout<<"Enter URL : ";
+                cin>>e.url;
+                e.id = hashfn(conn);
+                e.turl = encode(e.id);
+                insertdb(e,conn);
+                cout<<endl;
+                break;
+
+            case 2:
+                cout<<"Enter Tiny URL : https://erb.ly/";
+                cin>>t_url;
+                extractdb(conn,t_url);
+                cout<<endl;
+                break;
+
+            default:
+                mysql_close(conn);
+                return 0;
         }
     }
 }
@@ -99,7 +130,7 @@ string encode(long long n)
 }
 long long hashfn(MYSQL *conn)
 {
-    //Ensures no duplicate random numbers are used
+    //Ensures no duplicate random numbers are inserted
     long long id = Randomize();
     while(!check_id_db(conn,id))
         id = Randomize();
@@ -154,7 +185,6 @@ void insertdb(entry e,MYSQL *conn)
             if(row)
                 cout<<"Shortened Link already exists : https://erb.ly/"<<row[0]<<endl;
         }
-
     }
 }
 void extractdb(MYSQL* conn,string turl)
@@ -177,7 +207,11 @@ void extractdb(MYSQL* conn,string turl)
             else
                 cout<<"Invalid Path Input\n";
         }
+        return;
     }
+    cout<<"Connection Lost"<<endl;
+    exit(0);
 }
+
 
 
