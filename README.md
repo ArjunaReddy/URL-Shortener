@@ -13,5 +13,6 @@ A simple C++ project that implements the architecture of a URL shortening servic
 4. Create a new user on MySQL and grant all privileges<br />
 
 ## Team
+
 github.com/anirudh-g99<br />
 github.com/ArjunaReddy<br />
