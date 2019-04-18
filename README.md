@@ -1,6 +1,6 @@
 # URL-Shortener
 ## Description
-A simple C++ project that implements the architecture of a URL shortening service using database connectivity
+A C++ mini-project that implements the architecture of a URL shortening service using database connectivity
 
 ## Software Requirements
 1. code::blocks IDE is recommended for linking MySQL/C connector libraries,dll and header files.<br />
