@@ -3,7 +3,7 @@
 A C++ mini-project that implements the architecture of a URL shortening service using database connectivity
 
 ## Software Requirements
-1. code::blocks IDE is recommended for linking MySQL/C connector libraries,dll and header files.<br />
+1. code::blocks IDE<br />
 2. Xampp web server solution stack<br />
 3. SQLAPI++ Library<br />
     http://www.sqlapi.com/Download/index.html<br />
